@@ -1,0 +1,15 @@
+public class mug extends merchandise {
+    int volume;
+
+    public mug() throws dateException {
+        super();
+        this.volume = 0;
+    }
+
+    public mug(int ID, int price, String admissionDate, String category, String producer, String productionDate,
+                 String brand, int volume) throws dateException {
+        super(ID, price, admissionDate, category, producer, productionDate, brand);
+        this.volume = volume;
+    }
+
+}
