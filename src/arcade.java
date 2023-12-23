@@ -8,17 +8,17 @@ public class arcade extends  machine{
         maxCoinCapacity = 0;
         controller = "noData";
     }
-    public arcade(int ID, int price, date admissionDate, String category,
+    public arcade(int ID, int price, date admissionDate, String name, String category,
                   String producer, date productionDate, String CPU, String soundChip, String graphics,
                   int maxCoinCapacity, String controller) throws dateException{
-        super(ID, price, admissionDate, category, producer, productionDate, CPU, soundChip, graphics);
+        super(ID, price, admissionDate, name, category, producer, productionDate, CPU, soundChip, graphics);
         this.maxCoinCapacity = maxCoinCapacity;
         this.controller = controller;
     }
-    public arcade(int ID, int price, String admissionDate, String category,
+    public arcade(int ID, int price, String admissionDate, String name, String category,
                   String producer, String productionDate, String CPU, String soundChip, String graphics,
                   int maxCoinCapacity, String controller) throws dateException{
-        super(ID, price, admissionDate, category, producer, productionDate, CPU, soundChip, graphics);
+        super(ID, price, admissionDate, name, category, producer, productionDate, CPU, soundChip, graphics);
         this.maxCoinCapacity = maxCoinCapacity;
         this.controller = controller;
     }

@@ -10,10 +10,10 @@ public class console extends  machine {
         videoOutput = "noData";
     }
 
-    public console(int ID, int price, String admissionDate, String category,
+    public console(int ID, int price, String admissionDate, String name, String category,
                    String producer, String productionDate, String CPU, String soundChip,
                    String graphics, int generation, String media, String videoOutput) throws dateException {
-        super(ID, price, admissionDate, category, producer, productionDate, CPU, soundChip, graphics);
+        super(ID, price, admissionDate, name, category, producer, productionDate, CPU, soundChip, graphics);
         this.generation = generation;
         this.media = media;
         this.videoOutput = videoOutput;

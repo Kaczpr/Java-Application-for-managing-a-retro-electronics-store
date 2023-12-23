@@ -8,9 +8,9 @@ public class shirt extends merchandise{
         this.material = "noData";
     }
 
-    public shirt(int ID, int price, String admissionDate, String category, String producer, String productionDate,
+    public shirt(int ID, int price, String admissionDate, String name, String category, String producer, String productionDate,
                  String brand, String size, String material) throws dateException {
-        super(ID, price, admissionDate, category, producer, productionDate, brand);
+        super(ID, price, admissionDate, name, category, producer, productionDate, brand);
         this.size = size;
         this.material = material;
     }

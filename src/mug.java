@@ -6,9 +6,9 @@ public class mug extends merchandise {
         this.volume = 0;
     }
 
-    public mug(int ID, int price, String admissionDate, String category, String producer, String productionDate,
+    public mug(int ID, int price, String admissionDate, String name, String category, String producer, String productionDate,
                  String brand, int volume) throws dateException {
-        super(ID, price, admissionDate, category, producer, productionDate, brand);
+        super(ID, price, admissionDate, name, category, producer, productionDate, brand);
         this.volume = volume;
     }
 
