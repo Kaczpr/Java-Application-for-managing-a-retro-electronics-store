@@ -1,7 +1,7 @@
 public class machine extends product{
-    String CPU;
-    String soundChip;
-    String graphics;
+    private String CPU;
+    private String soundChip;
+    private String graphics;
 
     public machine() throws dateException {
         super();
@@ -22,5 +22,14 @@ public class machine extends product{
         this.graphics = graphics;
     }
 
+    public String getCPU(){
+        return this.CPU;
+    }
+    public String getSoundChip(){
+        return this.soundChip;
+    }
+    public String getGraphics(){
+        return this.graphics;
+    }
 
 }

@@ -80,7 +80,7 @@ public class date {
         this.days = d;
     }//sets attribute 'days'
 
-    public void printDate() throws dateException {
+    public void printFUllDate() throws dateException {
         int currentDay = 0;
         int currentMonth = 0;
         int currentYear = 0;
@@ -112,19 +112,51 @@ public class date {
 
     } //Prints current date in nice format :>
 
+    public String dateToString() throws dateException {
+        Integer currentDay = 0;
+        Integer currentMonth = 0;
+        Integer currentYear = 0;
+        currentYear = tool.whatYearIsIt(this.days)[0];
+        currentMonth = tool.whatMonthIsIt(tool.whatYearIsIt(this.days)[1], currentYear)[0];
+        currentDay = tool.whatMonthIsIt(tool.whatYearIsIt(this.days)[1], currentYear)[1] + 1;
+
+        //sekcja wstydu a więc okropne if'y. Są bardzo niezgrabne ale rozwiązują problemy z wypisywaniem dat.
+        //A DAY MAY COME WHEN znajde pomysł jak to rozwiązać. BUT IT IS NOT THIS DAY!
+        if (currentDay == 32) {
+            currentDay = 1;
+            currentMonth++;
+        }
+        if (currentDay == 31 && tool.howManyDaysInThisMonth(currentMonth, currentYear) == 30) {
+            currentDay = 1;
+            currentMonth++;
+        }
+        if((currentDay==1 && currentMonth==13)){
+            currentMonth = 1;
+            currentYear++;
+        }
+        if(currentDay==29 && currentMonth==2){
+            currentDay=1;
+            currentMonth=3;
+        }
+
+        return new String(currentDay.toString() + "." + currentMonth.toString() +
+                "." + currentYear.toString());
+
+    }
+
     public Boolean compare (date x) throws dateException {
         if(this.days> x.days){
             System.out.print("Date: ");
-            this.printDate();
+            this.dateToString();
             System.out.print(" is an later date in comparison to date: ");
-            x.printDate();
+            x.dateToString();
             return true;
         }
         else{
             System.out.print("Date: ");
-            x.printDate();
+            x.dateToString();
             System.out.print(" is an later date in comparison to date: ");
-            this.printDate();
+            this.dateToString();
             return false;
         }
     }//compares 2 dates

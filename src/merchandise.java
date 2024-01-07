@@ -1,5 +1,5 @@
 public class merchandise extends product{
-    String brand;
+    private String brand;
 
     public merchandise() throws dateException {
         super();
@@ -9,4 +9,9 @@ public class merchandise extends product{
         super(ID, price, admissionDate, name, category, producer, productionDate);
         this.brand = brand;
     }
+
+    public String getBrand(){
+        return this.brand;
+    }
+
 }

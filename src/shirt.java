@@ -1,6 +1,6 @@
 public class shirt extends merchandise{
-    String size;
-    String material;
+    private String size;
+    private String material;
 
     public shirt() throws dateException {
         super();
@@ -14,4 +14,12 @@ public class shirt extends merchandise{
         this.size = size;
         this.material = material;
     }
+
+    public String getSize(){
+        return this.size;
+    }
+    public String getMaterial(){
+        return this.material;
+    }
+
 }

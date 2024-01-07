@@ -1,7 +1,7 @@
 public class arcade extends  machine{
 
-    int maxCoinCapacity; //max number of coins that can be stored inside
-    String controller; //dancing mat, "fishing rods", buttons, pistols, steering wheels
+    private int maxCoinCapacity; //max number of coins that can be stored inside
+    private String controller; //dancing mat, "fishing rods", buttons, pistols, steering wheels
 
     public arcade() throws dateException {
         super();
@@ -22,5 +22,13 @@ public class arcade extends  machine{
         this.maxCoinCapacity = maxCoinCapacity;
         this.controller = controller;
     }
+
+    public int getMaxCoinCapacity (){
+        return this.maxCoinCapacity;
+    }
+    public String getController (){
+        return this.controller;
+    }
+
 
 }

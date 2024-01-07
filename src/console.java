@@ -1,7 +1,9 @@
+import java.io.*;
+
 public class console extends  machine {
-    int generation;
-    String media;
-    String videoOutput;
+    private int generation;
+    private String media;
+    private String videoOutput;
 
     public console() throws dateException {
         super();
@@ -18,4 +20,15 @@ public class console extends  machine {
         this.media = media;
         this.videoOutput = videoOutput;
     }
+
+    public int getGen(){
+        return this.generation;
+    }
+    public String getMedia(){
+        return this.media;
+    }
+    public String getVideoOutput(){
+        return this.videoOutput;
+    }
 }
+

@@ -1,14 +1,14 @@
 public class game extends product{
-    String console;
-    String[] gameModes;//single/multi/co-op
-    String[] genres;
-    String language;
-    String medium;
+    private String console;
+    private String[] gameModes;//single/multi/co-op
+    private String[] genres;
+    private String language;
+    private String medium;
 
     public game() throws dateException {
         super();
         console = "noData";
-        gameModes = new String[]{"noData"};
+        gameModes = new String[]{"noData", "SAS", "XDD"};
         genres = new String[]{"noData"};
         this.language = "noData";
     }
@@ -21,6 +21,22 @@ public class game extends product{
         this.genres = genres;
         this.language = language;
         this.medium = medium;
+    }
+
+    public String getConsole(){
+        return this.console;
+    }
+    public String[] getGameModes(){
+        return this.gameModes;
+    }
+    public String[] getGenres(){
+        return this.genres;
+    }
+    public String getLanguage(){
+        return this.language;
+    }
+    public String getMedium(){
+        return this.medium;
     }
 
 }

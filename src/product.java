@@ -1,9 +1,9 @@
 public class product extends item{
 
-    String name;
-    String category;
-    String producer;
-    date productionDate;
+    private String name;
+    private String category;
+    private String producer;
+    private date productionDate;
 
 
     public product() throws dateException {
@@ -32,6 +32,19 @@ public class product extends item{
         this.category = category;
         this.producer = producer;
         this.productionDate = new date(productionDate);
+    }
+
+    public String getName(){
+        return this.name;
+    }
+    public String getCategory(){
+        return this.category;
+    }
+    public String getProducer(){
+        return this.producer;
+    }
+    public String getProductionDate() throws dateException {
+        return this.productionDate.dateToString();
     }
 
 }

@@ -1,6 +1,6 @@
 public class regLockGame extends  game{
-    String region;
-    String regLock;
+    private String region;
+    private String regLock;
 
     public regLockGame() throws dateException{
         super();
@@ -14,4 +14,12 @@ public class regLockGame extends  game{
         this.region = region;
         this.regLock = regLock;
     }
+
+    public String getRegion(){
+        return this.region;
+    }
+    public String getRegLock(){
+        return this.regLock;
+    }
+
 }

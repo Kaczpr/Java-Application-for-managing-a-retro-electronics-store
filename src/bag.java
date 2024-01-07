@@ -1,6 +1,6 @@
 public class bag extends mug{
 
-    String material;
+    private String material;
 
     public bag() throws dateException {
         super();
@@ -11,6 +11,10 @@ public class bag extends mug{
                String brand, int volume, String material) throws dateException {
         super(ID, price, admissionDate, name, category, producer, productionDate, brand, volume);
         this.material = material;
+    }
+
+    public String getMaterial(){
+        return this.material;
     }
 
 }
