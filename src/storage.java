@@ -1,10 +1,17 @@
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class storage {
 
 
     //StringBuilder is an array of characters
-    public StringBuilder createCSV_Line(product product) throws dateException {
+    public static StringBuilder createCSV_Line(product product) throws dateException {
         StringBuilder toReturn = new StringBuilder(20);
         toReturn.append(product.getID()).append(",");
         toReturn.append(product.getPrice()).append(",");
@@ -63,6 +70,41 @@ public class storage {
         }
         toReturn.deleteCharAt(toReturn.length() - 1);
         return toReturn;
+
+
     }
 
-}
+    public static void writeToCLV(StringBuilder toWrite){
+        try (Writer writer = new OutputStreamWriter(Files.newOutputStream(
+                Paths.get("/home/kaczpr/IdeaProjects/semestrialProject/src/storage.csv"),
+                StandardOpenOption.CREATE, StandardOpenOption.APPEND),
+                StandardCharsets.UTF_8)) {
+
+            writer.write(String.valueOf(toWrite));
+            writer.write("\n");
+            System.out.println("CSV file saved");
+        } catch (IOException e){
+            System.out.println("An error occurred while writing CSV file");
+        }
+    }
+
+    public static String[] readFromCSV() {
+        List<String> lines = new ArrayList<>();
+        File storage = new File("/home/kaczpr/IdeaProjects/semestrialProject/src/storage.csv");
+        try (BufferedReader reader = new BufferedReader(new FileReader(storage))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lines.add(line);
+            }
+        }catch (IOException e) {
+            System.out.println("IOException: " + e.getMessage());
+        }
+        return lines.toArray(new String[0]);
+
+    }
+
+    }
+
+
+
+

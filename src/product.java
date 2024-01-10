@@ -1,5 +1,8 @@
-public class product extends item{
+import java.io.FileWriter;
+import java.io.IOException;
 
+public class product extends item{
+    storage storage;
     private String name;
     private String category;
     private String producer;
