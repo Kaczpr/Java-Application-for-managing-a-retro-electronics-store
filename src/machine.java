@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class machine extends product{
     private String CPU;
     private String soundChip;
@@ -32,5 +34,21 @@ public class machine extends product{
         return this.graphics;
     }
 
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        machine machine = (machine) obj;
+        return  Objects.equals(this.getCategory(), machine.getCategory()) &&
+                Objects.equals(this.getProducer(), machine.getProducer()) &&
+                Objects.equals(this.getCPU(), machine.getCPU()) &&
+                Objects.equals(this.getSoundChip(), machine.getSoundChip()) &&
+                Objects.equals(this.getGraphics(), machine.getGraphics());
+    }
 
 }

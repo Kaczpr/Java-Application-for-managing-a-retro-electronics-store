@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.Objects;
 
 public class console extends machine {
     private int generation;
@@ -31,6 +32,20 @@ public class console extends machine {
         return this.videoOutput;
     }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        console console = (console) obj;
+        return  Objects.equals(this.getCategory(), console.getCategory()) &&
+                Objects.equals(this.getName(), console.getName()) &&
+                Objects.equals(this.getProducer(), console.getProducer()) &&
+                Objects.equals(this.getGen(), console.getGen()) &&
+                Objects.equals(this.getMedia(), console.getMedia());
+    }
 }
 

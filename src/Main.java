@@ -17,7 +17,6 @@ public class Main {
 
         storage s1 = new storage();
         //s1.storageInfo();
-        System.out.println(chronoTrigger2.compareTo(chronoTrigger1));
 
     }
 

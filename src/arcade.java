@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class arcade extends machine{
 
     private int maxCoinCapacity; //max number of coins that can be stored inside
@@ -28,6 +30,19 @@ public class arcade extends machine{
     }
     public String getController (){
         return this.controller;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        arcade arcade = (arcade) obj;
+        return  Objects.equals(this.getCategory(), arcade.getCategory()) &&
+                Objects.equals(this.getName(), arcade.getName());
     }
 
 }

@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class shirt extends merchandise{
     private String size;
     private String material;
@@ -22,5 +24,20 @@ public class shirt extends merchandise{
         return this.material;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        shirt shirt = (shirt) obj;
+        return  Objects.equals(this.getCategory(), shirt.getCategory()) &&
+                Objects.equals(this.getProducer(), shirt.getProducer()) &&
+                Objects.equals(this.getBrand(), shirt.getBrand()) &&
+                Objects.equals(this.getSize(), shirt.getSize()) &&
+                Objects.equals(this.getMaterial(), shirt.getMaterial());
 
+    }
 }

@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class product extends item {
     storage storage;
     private final String name;
@@ -55,5 +57,20 @@ public class product extends item {
     @Override
     public String toString() {
         return this.name;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        product product = (product) obj;
+        return  Objects.equals(this.getName(), product.getName()) &&
+                Objects.equals(this.getCategory(), product.getCategory()) &&
+                Objects.equals(this.getProducer(), product.getProducer());
     }
 }

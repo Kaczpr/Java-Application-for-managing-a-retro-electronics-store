@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class game extends product{
     private String console;
     private String[] gameModes;//single/multi/co-op
@@ -39,6 +41,20 @@ public class game extends product{
         return this.medium;
     }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        game game = (game) obj;
+        return  Objects.equals(this.getName(), game.getName()) &&
+                Objects.equals(this.getCategory(), game.getCategory()) &&
+                Objects.equals(this.getProducer(), game.getProducer()) &&
+                Objects.equals(this.getLanguage(), game.getLanguage()) &&
+                Objects.equals(this.getMedium(), game.getMedium());
+    }
 
 }

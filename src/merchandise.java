@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class merchandise extends product implements Comparable<item>{
     private String brand;
 
@@ -14,5 +16,20 @@ public class merchandise extends product implements Comparable<item>{
         return this.brand;
     }
 
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        merchandise merchandise = (merchandise) obj;
+        return  Objects.equals(this.getCategory(), merchandise.getCategory()) &&
+                Objects.equals(this.getProducer(), merchandise.getProducer()) &&
+                Objects.equals(this.getBrand(), merchandise.getBrand());
+
+    }
 
 }

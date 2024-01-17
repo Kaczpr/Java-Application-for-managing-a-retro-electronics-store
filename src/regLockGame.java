@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class regLockGame extends  game{
     private String region;
     private String regLock;
@@ -22,5 +24,21 @@ public class regLockGame extends  game{
         return this.regLock;
     }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        regLockGame regLockGame = (regLockGame) obj;
+        return  Objects.equals(this.getName(), regLockGame.getName()) &&
+                Objects.equals(this.getCategory(), regLockGame.getCategory()) &&
+                Objects.equals(this.getProducer(), regLockGame.getProducer()) &&
+                Objects.equals(this.getLanguage(), regLockGame.getLanguage()) &&
+                Objects.equals(this.getRegion(), regLockGame.getRegion()) &&
+                Objects.equals(this.getRegLock(), regLockGame.getRegLock()) &&
+                Objects.equals(this.getMedium(), regLockGame.getMedium());
+    }
 }
