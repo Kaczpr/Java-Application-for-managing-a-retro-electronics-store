@@ -6,14 +6,16 @@ import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class storage {
 
     private int maxSize;
     private int currentSize;
+    private String name;
 
-    public void currentSize() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("/home/kaczpr/IdeaProjects/semestrialProject/src/storage1.csv"));
+    public void currentSize(String file) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("/home/kaczpr/IdeaProjects/semestrialProject/storages/" + file) );
         int lines = 0;
         while (reader.readLine() != null) lines++;
         reader.close();
@@ -26,10 +28,12 @@ public class storage {
     public int getMaxSize(){
         return this.maxSize;
     }
+    public String getName(){return this.name;}
 
-    public storage() throws IOException {
+    public storage(String file) throws IOException {
         this.maxSize = 100;
-        currentSize();
+        currentSize(file);
+        this.name = file;
     }
     public storage(int maxSize){
         this.maxSize = maxSize;
@@ -99,9 +103,9 @@ public class storage {
 
     }
 
-    public static void writeToCLV(StringBuilder toWrite){
+    public static void writeToCSV(StringBuilder toWrite, String file){
         try (Writer writer = new OutputStreamWriter(Files.newOutputStream(
-                Paths.get("/home/kaczpr/IdeaProjects/semestrialProject/src/storage1.csv"),
+                Paths.get("/home/kaczpr/IdeaProjects/semestrialProject/storages/" + file),
                 StandardOpenOption.CREATE, StandardOpenOption.APPEND),
                 StandardCharsets.UTF_8)) {
 
@@ -112,9 +116,25 @@ public class storage {
             System.out.println("An error occurred while writing CSV file");
         }
     }
-    public static String[] readFromCSV() {
+
+    public void writeToCSV(product product) throws dateException {
+        StringBuilder toWrite = storage.createCSV_Line(product);
+        try (Writer writer = new OutputStreamWriter(Files.newOutputStream(
+                Paths.get("/home/kaczpr/IdeaProjects/semestrialProject/storages/" + this.getName()),
+                StandardOpenOption.CREATE, StandardOpenOption.APPEND),
+                StandardCharsets.UTF_8)) {
+
+            writer.write(String.valueOf(toWrite));
+            writer.write("\n");
+            System.out.println("CSV file saved");
+        } catch (IOException e){
+            System.out.println("An error occurred while writing CSV file");
+        }
+    }
+
+    public static String[] readFromCSV(String file) {
         List<String> lines = new ArrayList<>();
-        File storage = new File("/home/kaczpr/IdeaProjects/semestrialProject/src/storage1.csv");
+        File storage = new File("/home/kaczpr/IdeaProjects/semestrialProject/storages/" + file);
         try (BufferedReader reader = new BufferedReader(new FileReader(storage))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -132,7 +152,7 @@ public class storage {
         String[] products = new String[this.maxSize];
 
         for(int i = 0; i<this.currentSize; i++){
-            String[] info = readFromCSV()[i].split(",");
+            String[] info = readFromCSV(this.getName())[i].split(",");
             System.out.println("Product nr." + (i+1) + ":");
             System.out.printf("ID: %s; Price: %s; Admission date: ",info[0], info[1]);
             System.out.printf(info[2]);
@@ -174,6 +194,18 @@ public class storage {
             System.out.print("\n");
         }
     }
+
+    public static void createNewStorage(String name) throws IOException {
+        File file = new File("/home/kaczpr/IdeaProjects/semestrialProject/storages/" + name + ".csv");
+        if (!file.exists()) {
+            if (file.createNewFile()) {
+                System.out.println("Storage is created!");
+            } else {
+                System.out.println("Failed to create directory!");
+            }
+        }
+    }
+
 
     }
 

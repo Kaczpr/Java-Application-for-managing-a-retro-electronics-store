@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String [] args) throws dateException, IOException {
@@ -17,12 +18,13 @@ public class Main {
                 "Super Nintendo Entertainment System (SNES)", new String[]{"XDDD", "Multiplayer"},
                 new String[]{"Role-Playing Game (RPG)", "Adventure"}, "English", "Cartridge", "Europe", "PAL");
         arcade midwayT2 = new arcade(midwayT);
-        System.out.println(midwayT2.compareTo(midwayT));
-        System.out.println(midwayT2.admissionDate.toString());
+
+        storage.createNewStorage("testStorage");
+        storage testStorage = new storage("testStorage.csv");
+        //testStorage.writeToCSV(midwayT2);
+        testStorage.storageInfo();
 
 
-        storage s1 = new storage();
-        //s1.storageInfo();
         //nie wiem czy nie lepiej zamienic metody compareTo tak zeby poprostu porownywala hashcody.
         //wydaje mi sie ze nie, wydaje mi sie ze dwa obiekty mogą mieć te same hashcody ale byc rozne, ale lepiej doptać
 
