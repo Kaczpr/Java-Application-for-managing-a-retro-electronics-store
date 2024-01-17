@@ -21,6 +21,12 @@ public class console extends machine {
         this.media = media;
         this.videoOutput = videoOutput;
     }
+    public console(console console) throws dateException{
+        super(console);
+        this.generation = console.getGen();
+        this.media = console.getMedia();
+        this.videoOutput = console.getVideoOutput();
+    }
 
     public int getGen(){
         return this.generation;

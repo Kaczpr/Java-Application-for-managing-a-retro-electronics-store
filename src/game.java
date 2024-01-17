@@ -25,6 +25,15 @@ public class game extends product{
         this.medium = medium;
     }
 
+    public game(game game) throws dateException{
+        super(game);
+        this.console = game.console;
+        this.gameModes = game.gameModes;
+        this.genres = game.genres;
+        this.language = game.language;
+        this.medium = game.medium;
+    }
+
     public String getConsole(){
         return this.console;
     }

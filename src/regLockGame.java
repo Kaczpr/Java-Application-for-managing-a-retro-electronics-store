@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class regLockGame extends  game{
+public class regLockGame extends game{
     private String region;
     private String regLock;
 
@@ -15,6 +15,11 @@ public class regLockGame extends  game{
         super(ID, price, admissionDate, name, category, producer, productionDate, console, gameModes, genres, language, medium);
         this.region = region;
         this.regLock = regLock;
+    }
+    public regLockGame(regLockGame regLockGame) throws dateException{
+        super(regLockGame);
+        this.region = regLockGame.getRegion();
+        this.regLock = regLockGame.getRegLock();
     }
 
     public String getRegion(){

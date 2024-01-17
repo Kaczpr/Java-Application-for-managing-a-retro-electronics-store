@@ -24,6 +24,11 @@ public class arcade extends machine{
         this.maxCoinCapacity = maxCoinCapacity;
         this.controller = controller;
     }
+    public arcade(arcade arcade) throws dateException{
+        super(arcade);
+        this.maxCoinCapacity = arcade.getMaxCoinCapacity();
+        this.controller = arcade.getController();
+    }
 
     public int getMaxCoinCapacity (){
         return this.maxCoinCapacity;

@@ -1,4 +1,4 @@
-public class date {
+public class date implements Comparable<date>{
     private int days; //days since 1970
     dateTools tool = new dateTools();
 
@@ -39,7 +39,7 @@ public class date {
     }//constructor with String, separates string with - , and ;
 
     //getters
-    public int getDaysSince(){
+    public int getDays(){
         return this.days;
     }//returns attribute 'days'
     public Integer [] getSpecific() throws dateException {
@@ -112,6 +112,10 @@ public class date {
 
     } //Prints current date in nice format :>
 
+
+
+
+
     public String dateToString() throws dateException {
         Integer currentDay = 0;
         Integer currentMonth = 0;
@@ -139,24 +143,24 @@ public class date {
             currentMonth=3;
         }
 
-        return new String(currentDay.toString() + "." + currentMonth.toString() +
-                "." + currentYear.toString());
+        return new String(currentDay.toString() + "-" + currentMonth.toString() +
+                "-" + currentYear.toString());
 
     }
 
     public Boolean compare (date x) throws dateException {
         if(this.days> x.days){
             System.out.print("Date: ");
-            this.dateToString();
+            this.toString();
             System.out.print(" is an later date in comparison to date: ");
-            x.dateToString();
+            x.toString();
             return true;
         }
         else{
             System.out.print("Date: ");
-            x.dateToString();
+            x.toString();
             System.out.print(" is an later date in comparison to date: ");
-            this.dateToString();
+            this.toString();
             return false;
         }
     }//compares 2 dates
@@ -187,6 +191,30 @@ public class date {
     public int hashCode(){
         return this.days;
     }
-
+    @Override
+    public int compareTo(date date) {
+        if(this.days > date.days) return 1;
+        else if(this.days < date.getDays()) return -1;
+        else return 0;
+    }
+    @Override
+    public String toString(){
+        try {
+            return this.dateToString();
+        } catch (dateException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        date otherDate = (date) obj;
+        return this.days == otherDate.days;
+    }
 
 }

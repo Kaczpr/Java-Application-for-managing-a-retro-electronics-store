@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class mug extends merchandise implements Comparable<item>{
+public class mug extends merchandise{
     private int volume;
 
     public mug() throws dateException {
@@ -12,6 +12,10 @@ public class mug extends merchandise implements Comparable<item>{
                  String brand, int volume) throws dateException {
         super(ID, price, admissionDate, name, category, producer, productionDate, brand);
         this.volume = volume;
+    }
+    public mug(mug mug) throws dateException{
+        super(mug);
+        this.volume = mug.getVolume();
     }
 
     public int getVolume(){

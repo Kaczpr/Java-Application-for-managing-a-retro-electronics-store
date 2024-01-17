@@ -16,6 +16,11 @@ public class shirt extends merchandise{
         this.size = size;
         this.material = material;
     }
+    public shirt(shirt shirt) throws dateException{
+        super(shirt);
+        this.size = shirt.getSize();
+        this.material = shirt.getMaterial();
+    }
 
     public String getSize(){
         return this.size;

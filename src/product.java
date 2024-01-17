@@ -1,7 +1,6 @@
 import java.util.Objects;
 
 public class product extends item {
-    storage storage;
     private final String name;
     private final String category;
     private final String producer;
@@ -37,6 +36,15 @@ public class product extends item {
         this.producer = producer;
         this.productionDate = new date(productionDate);
     }
+    public product(product product) throws  dateException{
+        this.ID = product.getID();
+        this.price = product.getPrice();
+        this.admissionDate = new date(product.admissionDate.dateToString());
+        this.name = product.getName();
+        this.category = product.getCategory();
+        this.producer = product.getProducer();
+        this.productionDate = new date(product.productionDate.dateToString());
+    }
 
     public String getName() {
         return this.name;
@@ -51,7 +59,7 @@ public class product extends item {
     }
 
     public String getProductionDate() throws dateException {
-        return this.productionDate.dateToString();
+        return this.productionDate.toString();
     }
 
     @Override

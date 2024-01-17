@@ -23,6 +23,12 @@ public class machine extends product{
         this.soundChip = soundChip;
         this.graphics = graphics;
     }
+   public machine (machine machine) throws dateException {
+        super(machine);
+       this.CPU = machine.getCPU();
+       this.soundChip = machine.getSoundChip();
+       this.graphics = machine.getGraphics();
+   }
 
     public String getCPU(){
         return this.CPU;
