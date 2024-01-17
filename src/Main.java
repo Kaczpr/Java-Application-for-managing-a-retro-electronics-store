@@ -26,6 +26,8 @@ public class Main {
         //nie wiem czy nie lepiej zamienic metody compareTo tak zeby poprostu porownywala hashcody.
         //wydaje mi sie ze nie, wydaje mi sie ze dwa obiekty mogą mieć te same hashcody ale byc rozne, ale lepiej doptać
 
+        //jak zrobić implementacje dodatkowych komparatorów (metody compare())?
+
     }
 
 
