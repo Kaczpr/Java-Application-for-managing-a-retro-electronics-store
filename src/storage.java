@@ -10,9 +10,9 @@ import java.util.Objects;
 
 public class storage {
 
-    private int maxSize;
+    private final int maxSize;
     private int currentSize;
-    private String name;
+    private final String name;
 
     public void currentSize(String file) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("/home/kaczpr/IdeaProjects/semestrialProject/storages/" + file) );
@@ -35,7 +35,8 @@ public class storage {
         currentSize(file);
         this.name = file;
     }
-    public storage(int maxSize){
+    public storage(int maxSize, String name){
+        this.name = name;
         this.maxSize = maxSize;
     }
 
