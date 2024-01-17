@@ -1,6 +1,6 @@
 import java.io.*;
 
-public class console extends  machine {
+public class console extends machine {
     private int generation;
     private String media;
     private String videoOutput;
@@ -30,5 +30,7 @@ public class console extends  machine {
     public String getVideoOutput(){
         return this.videoOutput;
     }
+
+
 }
 

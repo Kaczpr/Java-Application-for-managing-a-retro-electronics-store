@@ -9,6 +9,31 @@ import java.util.List;
 
 public class storage {
 
+    private int maxSize;
+    private int currentSize;
+
+    public void currentSize() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("/home/kaczpr/IdeaProjects/semestrialProject/src/storage1.csv"));
+        int lines = 0;
+        while (reader.readLine() != null) lines++;
+        reader.close();
+        this.currentSize = lines;
+    }
+
+    public int getCurrentSize(){
+        return this.currentSize;
+    }
+    public int getMaxSize(){
+        return this.maxSize;
+    }
+
+    public storage() throws IOException {
+        this.maxSize = 100;
+        currentSize();
+    }
+    public storage(int maxSize){
+        this.maxSize = maxSize;
+    }
 
     //StringBuilder is an array of characters
     public static StringBuilder createCSV_Line(product product) throws dateException {
@@ -18,7 +43,7 @@ public class storage {
         toReturn.append(product.getAdmissionDate()).append(",");
         toReturn.append(product.getName()).append(",");
         toReturn.append(product.getCategory()).append(",");
-        toReturn.append(product.getCategory()).append(",");
+        toReturn.append(product.getProducer()).append(",");
         toReturn.append(product.getProductionDate()).append(",");
 
         if(product instanceof machine){
@@ -76,7 +101,7 @@ public class storage {
 
     public static void writeToCLV(StringBuilder toWrite){
         try (Writer writer = new OutputStreamWriter(Files.newOutputStream(
-                Paths.get("/home/kaczpr/IdeaProjects/semestrialProject/src/storage.csv"),
+                Paths.get("/home/kaczpr/IdeaProjects/semestrialProject/src/storage1.csv"),
                 StandardOpenOption.CREATE, StandardOpenOption.APPEND),
                 StandardCharsets.UTF_8)) {
 
@@ -87,10 +112,9 @@ public class storage {
             System.out.println("An error occurred while writing CSV file");
         }
     }
-
     public static String[] readFromCSV() {
         List<String> lines = new ArrayList<>();
-        File storage = new File("/home/kaczpr/IdeaProjects/semestrialProject/src/storage.csv");
+        File storage = new File("/home/kaczpr/IdeaProjects/semestrialProject/src/storage1.csv");
         try (BufferedReader reader = new BufferedReader(new FileReader(storage))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -99,11 +123,60 @@ public class storage {
         }catch (IOException e) {
             System.out.println("IOException: " + e.getMessage());
         }
+
         return lines.toArray(new String[0]);
+    }
 
+    public void storageInfo(){
+        System.out.println("STORAGE INFO:");
+        String[] products = new String[this.maxSize];
+
+        for(int i = 0; i<this.currentSize; i++){
+            String[] info = readFromCSV()[i].split(",");
+            System.out.println("Product nr." + (i+1) + ":");
+            System.out.printf("ID: %s; Price: %s; Admission date: ",info[0], info[1]);
+            System.out.printf(info[2]);
+            System.out.printf("; Name: %s; Producer: %s; Production date: ", info[3], info[5]);
+            System.out.printf(info[6]);
+            System.out.print(" Category: ");
+            switch(info[4]){
+                case "Console":
+                    System.out.printf("Console; CPU: %s; Sound chip: %s; Graphics: %s; Generation: %s; Media: %s; Video output: %s",
+                            info[7], info[8], info[9], info[10], info[11], info[12]);
+                    break;
+                case "Arcade":
+                    System.out.printf("Arcade; CPU: %s; Sound chip: %s; Graphics: %s; Max coin capacity: %s; Controller: %s",
+                            info[7], info[8], info[9], info[10], info[11]);
+                    break;
+                case "Merchandise":
+                    System.out.printf("Merchandise; Brand: %s; ", info[7]);
+                    break;
+                case "Mug":
+                    System.out.printf("Mug; Brand: %s; Volume: %s", info[7], info[8]);
+                    break;
+                case "Bag":
+                    System.out.printf("Bag; Brand: %s; Volume: %s; Material: %s", info[7], info[8], info[9]);
+                    break;
+                case "Shirt":
+                    System.out.printf("Shirt; Brand: %s; Size: %s; Material: %s", info[7], info[8], info[9]);
+                    break;
+                case "Game":
+                    System.out.printf("Game; Console: %s; Game modes: %s; Genres: %s; Language: %s; Medium: %s",
+                            info[7], info[8], info[9], info[10], info[11]);
+                    break;
+                case "RegLock Game":
+                    System.out.printf("RegLock Game; Console: %s; Game modes: %s; Genres: %s; Language: %s; Medium: %s, Region: %s; Standard: %s",
+                            info[7], info[8], info[9], info[10], info[11], info[12], info[13]);
+                    break;
+                default:
+                    System.out.println("Couldn't find product class.");
+            }
+            System.out.print("\n");
+        }
     }
 
     }
+
 
 
 

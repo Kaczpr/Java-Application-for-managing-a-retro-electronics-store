@@ -1,4 +1,4 @@
-public class merchandise extends product{
+public class merchandise extends product implements Comparable<item>{
     private String brand;
 
     public merchandise() throws dateException {
@@ -13,5 +13,6 @@ public class merchandise extends product{
     public String getBrand(){
         return this.brand;
     }
+
 
 }

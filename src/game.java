@@ -39,4 +39,8 @@ public class game extends product{
         return this.medium;
     }
 
+    public boolean equals(game game){
+        return (this.getName().equals(game.getName()) && this.getProducer().equals(game.getProducer()) && this.getLanguage().equals(game.getLanguage()) && this.getMedium().equals(game.getMedium()) && this.getConsole().equals(game.getConsole()));
+    }
+
 }

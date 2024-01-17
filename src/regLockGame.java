@@ -22,4 +22,8 @@ public class regLockGame extends  game{
         return this.regLock;
     }
 
+    public boolean equals(regLockGame regLockGame){
+        return (this.getName().equals(regLockGame.getName()) && this.getProducer().equals(regLockGame.getProducer()) && this.getLanguage().equals(regLockGame.getLanguage()) && this.getMedium().equals(regLockGame.getMedium()) && this.getConsole().equals(regLockGame.getConsole()) && this.getRegion().equals(regLockGame.getRegion()) && this.getRegLock().equals(regLockGame.getRegLock()));
+    }
+
 }

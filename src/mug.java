@@ -1,4 +1,4 @@
-public class mug extends merchandise {
+public class mug extends merchandise implements Comparable<item>{
     private int volume;
 
     public mug() throws dateException {
@@ -14,6 +14,10 @@ public class mug extends merchandise {
 
     public int getVolume(){
         return this.volume;
+    }
+
+    public boolean equals(mug mug){
+        return (this.getVolume() == mug.getVolume() && this.getBrand().equals(mug.getBrand()));
     }
 
 }

@@ -32,4 +32,5 @@ public class machine extends product{
         return this.graphics;
     }
 
+
 }

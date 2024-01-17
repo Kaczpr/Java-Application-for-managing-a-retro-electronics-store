@@ -1,4 +1,4 @@
-public class bag extends mug{
+public class bag extends mug implements Comparable<item>{
 
     private String material;
 
@@ -16,5 +16,10 @@ public class bag extends mug{
     public String getMaterial(){
         return this.material;
     }
+
+    public boolean equals(bag bag){
+        return (this.getBrand().equals(bag.getBrand()));
+    }
+
 
 }

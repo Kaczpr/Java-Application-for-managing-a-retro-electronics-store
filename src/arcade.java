@@ -1,4 +1,4 @@
-public class arcade extends  machine{
+public class arcade extends machine{
 
     private int maxCoinCapacity; //max number of coins that can be stored inside
     private String controller; //dancing mat, "fishing rods", buttons, pistols, steering wheels
@@ -29,6 +29,5 @@ public class arcade extends  machine{
     public String getController (){
         return this.controller;
     }
-
 
 }

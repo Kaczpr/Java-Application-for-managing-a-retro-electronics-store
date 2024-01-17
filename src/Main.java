@@ -1,17 +1,27 @@
-public class Main {
-    public static void main(String [] args) throws dateException {
-        game rockman = new game (1, 1000, "20-10-2000", "Rock-man", "Game", "Nintendo", "20-12-1990",
-                "NES", new String[]{"SinglePlayer"}, new String[]{"Platformer", "Adventure"},
-                "Japanese", "Cartridge");
-        game contra = new game (2, 9999, "20-10-2000", "Contra", "Game", "Nintendo", "20-10-1990",
-                "NES", new String[]{"SinglePlayer"}, new String[]{"Platformer", "Adventure"},
-                "English", "Cartridge");
+import java.io.IOException;
 
-        String[] games = new String[2];
-        games[0] = storage.readFromCSV()[0];
-        System.out.println(games[0]);
+public class Main {
+    public static void main(String [] args) throws dateException, IOException {
+
+        arcade midwayT = new arcade (3, 68160, "13-12-2021", "Midway T-Unit", "Arcade", "Midway", "3-5-1994", " TMS34010", " Motorola 6809", "TMS34010",
+        1000, "Buttons");
+
+        regLockGame chronoTrigger1 = new regLockGame(10, 10000, "02-01-2024", "Chrono Trigger", "RegLock Game", "Square Enix", "11-03-1995",
+                "Super Nintendo Entertainment System (SNES)", new String[]{"Single Player", "Multiplayer"},
+                new String[]{"Role-Playing Game (RPG)", "Adventure"}, "English", "Cartridge", "North America", "NTSC");
+
+        regLockGame chronoTrigger2 = new regLockGame(10, 9765, "02-01-2024", "Chrono Trigger", "RegLock Game", "Square Enix", "11-03-1995",
+                "Super Nintendo Entertainment System (SNES)", new String[]{"Single Player", "Multiplayer"},
+                new String[]{"Role-Playing Game (RPG)", "Adventure"}, "English", "Cartridge", "Europe", "PAL");
+
+
+        storage s1 = new storage();
+        //s1.storageInfo();
+        System.out.println(chronoTrigger2.compareTo(chronoTrigger1));
 
     }
+
+
 
 
 }
