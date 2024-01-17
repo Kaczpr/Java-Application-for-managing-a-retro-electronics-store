@@ -51,12 +51,9 @@ public class product extends item {
     public String getProductionDate() throws dateException {
         return this.productionDate.dateToString();
     }
+
     @Override
     public String toString() {
         return this.name;
-    }
-    @Override
-    public boolean equals(product product){
-        return (this.getName().equals(product.getName()));
     }
 }

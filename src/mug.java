@@ -16,8 +16,5 @@ public class mug extends merchandise implements Comparable<item>{
         return this.volume;
     }
 
-    public boolean equals(mug mug){
-        return (this.getVolume() == mug.getVolume() && this.getBrand().equals(mug.getBrand()));
-    }
 
 }

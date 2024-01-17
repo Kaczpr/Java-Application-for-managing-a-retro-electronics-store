@@ -17,9 +17,6 @@ public class bag extends mug implements Comparable<item>{
         return this.material;
     }
 
-    public boolean equals(bag bag){
-        return (this.getBrand().equals(bag.getBrand()));
-    }
 
 
 }

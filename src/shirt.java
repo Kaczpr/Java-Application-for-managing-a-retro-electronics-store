@@ -22,7 +22,5 @@ public class shirt extends merchandise{
         return this.material;
     }
 
-    public boolean equals(shirt shirt) {
-        return (this.getMaterial().equals(shirt.getMaterial()) && this.getSize().equals(shirt.getMaterial()));
-    }
+
 }

@@ -17,5 +17,4 @@ public abstract class item implements Comparable<item>{
         return Integer.compare(this.getPrice(), item.getPrice());
     }
 
-    public abstract boolean equals(product product);
 }
