@@ -51,4 +51,15 @@ public class machine extends product{
                 Objects.equals(this.getGraphics(), machine.getGraphics());
     }
 
+
+    @Override
+    public int hashCode(){
+        int toReturn = 13;
+        toReturn = 31 * toReturn * this.getCategory().hashCode();
+        toReturn = 31 * toReturn * this.getProducer().hashCode();
+        toReturn = 31 * toReturn * this.getCPU().hashCode();
+        toReturn = 31 * toReturn * this.getSoundChip().hashCode();
+        toReturn = 31 * toReturn * this.getGraphics().hashCode();
+        return toReturn;
+    }
 }

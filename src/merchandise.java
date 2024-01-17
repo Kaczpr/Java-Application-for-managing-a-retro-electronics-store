@@ -31,5 +31,13 @@ public class merchandise extends product implements Comparable<item>{
                 Objects.equals(this.getBrand(), merchandise.getBrand());
 
     }
+    @Override
+    public int hashCode(){
+        int toReturn = 13;
+        toReturn = 31 * toReturn * this.getCategory().hashCode();
+        toReturn = 31 * toReturn * this.getProducer().hashCode();
+        toReturn = 31 * toReturn * this.getBrand().hashCode();
+        return toReturn;
+    }
 
 }

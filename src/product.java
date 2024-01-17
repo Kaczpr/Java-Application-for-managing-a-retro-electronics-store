@@ -73,4 +73,13 @@ public class product extends item {
                 Objects.equals(this.getCategory(), product.getCategory()) &&
                 Objects.equals(this.getProducer(), product.getProducer());
     }
+
+    @Override
+    public int hashCode(){
+        int toReturn = 13;
+        toReturn = 31 * toReturn * this.getName().hashCode();
+        toReturn = 31 * toReturn * this.getCategory().hashCode();
+        toReturn = 31 * toReturn * this.getProducer().hashCode();
+        return toReturn;
+    }
 }

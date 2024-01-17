@@ -44,5 +44,12 @@ public class arcade extends machine{
         return  Objects.equals(this.getCategory(), arcade.getCategory()) &&
                 Objects.equals(this.getName(), arcade.getName());
     }
+    @Override
+    public int hashCode(){
+        int toReturn = 13;
+        toReturn = 31 * toReturn * this.getCategory().hashCode();
+        toReturn = 31 * toReturn * this.getName().hashCode();
+        return toReturn;
+    }
 
 }

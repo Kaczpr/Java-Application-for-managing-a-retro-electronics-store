@@ -57,4 +57,15 @@ public class game extends product{
                 Objects.equals(this.getMedium(), game.getMedium());
     }
 
+    @Override
+    public int hashCode(){
+        int toReturn = 13;
+        toReturn = 31 * toReturn * this.getName().hashCode();
+        toReturn = 31 * toReturn * this.getCategory().hashCode();
+        toReturn = 31 * toReturn * this.getProducer().hashCode();
+        toReturn = 31 * toReturn * this.getLanguage().hashCode();
+        toReturn = 31 * toReturn * this.getMedium().hashCode();
+        return toReturn;
+    }
+
 }

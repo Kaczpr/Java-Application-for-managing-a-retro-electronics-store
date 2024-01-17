@@ -13,10 +13,14 @@ public class Main {
         regLockGame chronoTrigger2 = new regLockGame(10, 9765, "02-01-2024", "Chrono Trigger", "RegLock Game", "Square Enix", "11-03-1995",
                 "Super Nintendo Entertainment System (SNES)", new String[]{"Single Player", "Multiplayer"},
                 new String[]{"Role-Playing Game (RPG)", "Adventure"}, "English", "Cartridge", "Europe", "PAL");
+        regLockGame chronoTrigger3 = new regLockGame(10, 9765, "02-01-2222", "Chrono Trigger", "RegLock Game", "Square Enix", "11-03-1995",
+                "Super Nintendo Entertainment System (SNES)", new String[]{"XDDD", "Multiplayer"},
+                new String[]{"Role-Playing Game (RPG)", "Adventure"}, "English", "Cartridge", "Europe", "PAL");
 
 
         storage s1 = new storage();
         //s1.storageInfo();
+        //nie wiem czy nie lepiej zamienic metody compareTo tak zeby poprostu porownywala hashcody.
 
     }
 

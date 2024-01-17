@@ -41,4 +41,16 @@ public class regLockGame extends  game{
                 Objects.equals(this.getRegLock(), regLockGame.getRegLock()) &&
                 Objects.equals(this.getMedium(), regLockGame.getMedium());
     }
+    @Override
+    public int hashCode(){
+        int toReturn = 13;
+        toReturn = 31 * toReturn * this.getName().hashCode();
+        toReturn = 31 * toReturn * this.getCategory().hashCode();
+        toReturn = 31 * toReturn * this.getProducer().hashCode();
+        toReturn = 31 * toReturn * this.getLanguage().hashCode();
+        toReturn = 31 * toReturn * this.getMedium().hashCode();
+        toReturn = 31 * toReturn * this.getRegion().hashCode();
+        toReturn = 31 * toReturn * this.getRegLock().hashCode();
+        return toReturn;
+    }
 }

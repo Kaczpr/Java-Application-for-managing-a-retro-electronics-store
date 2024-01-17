@@ -47,5 +47,15 @@ public class console extends machine {
                 Objects.equals(this.getGen(), console.getGen()) &&
                 Objects.equals(this.getMedia(), console.getMedia());
     }
+    @Override
+    public int hashCode(){
+        int toReturn = 13;
+        toReturn = 31 * toReturn * this.getCategory().hashCode();
+        toReturn = 31 * toReturn * this.getName().hashCode();
+        toReturn = 31 * toReturn * this.getProducer().hashCode();
+        toReturn = 31 * toReturn * this.getGen();
+        toReturn = 31 * toReturn * this.getMedia().hashCode();
+        return toReturn;
+    }
 }
 

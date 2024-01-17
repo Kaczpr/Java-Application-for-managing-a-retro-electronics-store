@@ -183,5 +183,10 @@ public class date {
         return names[this.days%7];
     }
 
+    @Override
+    public int hashCode(){
+        return this.days;
+    }
+
 
 }

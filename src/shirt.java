@@ -40,4 +40,14 @@ public class shirt extends merchandise{
                 Objects.equals(this.getMaterial(), shirt.getMaterial());
 
     }
+    @Override
+    public int hashCode(){
+        int toReturn = 13;
+        toReturn = 31 * toReturn * this.getCategory().hashCode();
+        toReturn = 31 * toReturn * this.getProducer().hashCode();
+        toReturn = 31 * toReturn * this.getBrand().hashCode();
+        toReturn = 31 * toReturn * this.getSize().hashCode();
+        toReturn = 31 * toReturn * this.getMaterial().hashCode();
+        return toReturn;
+    }
 }
