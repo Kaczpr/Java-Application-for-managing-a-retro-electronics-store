@@ -1,8 +1,11 @@
+import jdk.internal.org.objectweb.asm.tree.IntInsnNode;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -155,7 +158,8 @@ public class storage {
         for(int i = 0; i<this.currentSize; i++){
             String[] info = readFromCSV(this.getName())[i].split(",");
             System.out.println("Product nr." + (i+1) + ":");
-            System.out.printf("ID: %s; Price: %s; Admission date: ",info[0], info[1]);
+            double intPrice = Integer.parseInt(info[1]);
+            System.out.printf("ID: %s; Price: %sPLN; Admission date: ",info[0], intPrice/100);
             System.out.printf(info[2]);
             System.out.printf("; Name: %s; Producer: %s; Production date: ", info[3], info[5]);
             System.out.printf(info[6]);
