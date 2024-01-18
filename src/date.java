@@ -13,6 +13,7 @@ public class date implements Comparable<date>{
     } //constructor with one int, give it amount of days since 1.1.1970;
 
     public date(int d, int m, int y) throws dateException {
+        tool.validateDaysInMonth(d,m, y);
         tool.validateMonth(m);
         tool.validateYear(y);
         if(d<0) throw new dateException("Invalid number of days!");
@@ -28,6 +29,7 @@ public class date implements Comparable<date>{
         int d = Integer.parseInt(st[0]);
         int m = Integer.parseInt(st[1]);
         int y = Integer.parseInt(st[2]);
+        tool.validateDaysInMonth(d,m, y);
         tool.validateMonth(m);
         tool.validateYear(y);
         if(d<0) throw new dateException("Invalid number of days!");

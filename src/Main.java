@@ -19,16 +19,23 @@ public class Main {
                 new String[]{"Role-Playing Game (RPG)", "Adventure"}, "English", "Cartridge", "Europe", "PAL");
         arcade midwayT2 = new arcade(midwayT);
 
-        storage.createNewStorage("testStorage");
-        storage testStorage = new storage("testStorage.csv");
+        //storage.createNewStorage("testStorage");
+        //storage testStorage = new storage("testStorage.csv");
         //testStorage.writeToCSV(midwayT2);
-        testStorage.storageInfo();
-
+        //testStorage.storageInfo();
+        //storage.createNewStorage("123");
 
         //nie wiem czy nie lepiej zamienic metody compareTo tak zeby poprostu porownywala hashcody.
         //wydaje mi sie ze nie, wydaje mi sie ze dwa obiekty mogą mieć te same hashcody ale byc rozne, ale lepiej doptać
 
         //jak zrobić implementacje dodatkowych komparatorów (metody compare())?
+        //interfejsami chyba
+
+        date data = new date("50-10-1990");
+        data.printFUllDate();
+
+
+
 
     }
 
