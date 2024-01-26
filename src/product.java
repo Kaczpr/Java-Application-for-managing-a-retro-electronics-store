@@ -73,7 +73,7 @@ public class product extends item {
         if (this == obj) {
             return true;
         }
-        if (obj == null || getClass() != obj.getClass()) {
+        if (obj == null || getClass() != obj.getClass()) { //lepiej uzyc instanceOf
             return false;
         }
         product product = (product) obj;

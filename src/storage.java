@@ -1,17 +1,15 @@
-import jdk.internal.org.objectweb.asm.tree.IntInsnNode;
-
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
 
 public class storage {
+
+    private List<String> productList;
 
     private final int maxSize;
     private int currentSize;
@@ -32,11 +30,15 @@ public class storage {
         return this.maxSize;
     }
     public String getName(){return this.name;}
+    public List<String> getProductList(){
+        return this.productList;
+    }
 
     public storage(String file) throws IOException {
         this.maxSize = 100;
         currentSize(file);
         this.name = file;
+        this.productList = Arrays.asList(readFromCSV(file));
     }
     public storage(int maxSize, String name){
         this.name = name;
