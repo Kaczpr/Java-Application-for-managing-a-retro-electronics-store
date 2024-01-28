@@ -3,7 +3,7 @@ public abstract class item implements Comparable<item>{
     int price; // wartosc całkowita, cena jest przechowywana w groszach
     date admissionDate;
 
-    public int getID(){
+    public Integer getID(){
         return this.ID;
     }
     public int getPrice(){

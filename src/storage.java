@@ -3,9 +3,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public final class storage {
 
@@ -41,9 +39,10 @@ public final class storage {
         this.name = file;
         this.productList = Arrays.asList(readFromCSV(file));
     }
-    public storage(int maxSize, String name){
+    public storage(int maxSize, String name) throws storageException {
         this.name = name;
         this.maxSize = maxSize;
+        if (maxSize < 0) throw new storageException("Size cannot be negtive");
     }
 
     //StringBuilder is an array of characters
@@ -110,21 +109,8 @@ public final class storage {
 
     }
 
-    public static void writeToCSV(StringBuilder toWrite, String file){
-        try (Writer writer = new OutputStreamWriter(Files.newOutputStream(
-                Paths.get("/home/kaczpr/IdeaProjects/semestrialProject/storages/" + file),
-                StandardOpenOption.CREATE, StandardOpenOption.APPEND),
-                StandardCharsets.UTF_8)) {
-
-            writer.write(String.valueOf(toWrite));
-            writer.write("\n");
-            System.out.println("CSV file saved");
-        } catch (IOException e){
-            System.out.println("An error occurred while writing CSV file");
-        }
-    }
-
-    public void writeToCSV(product product) throws dateException {
+    public void writeToCSV(product product) throws dateException, productException {
+        product.Validation();
         StringBuilder toWrite = storage.createCSV_Line(product);
         try (Writer writer = new OutputStreamWriter(Files.newOutputStream(
                 Paths.get("/home/kaczpr/IdeaProjects/semestrialProject/storages/" + this.getName()),
@@ -137,6 +123,7 @@ public final class storage {
         } catch (IOException e){
             System.out.println("An error occurred while writing CSV file");
         }
+        product.writeToIDCollection();
     }
 
     public static String[] readFromCSV(String file) {
@@ -154,7 +141,7 @@ public final class storage {
         return lines.toArray(new String[0]);
     }
 
-    public void storageInfo(){
+    public void storageInfo() throws storageException {
         System.out.println("STORAGE INFO:");
         String[] products = new String[this.maxSize];
 
@@ -197,7 +184,7 @@ public final class storage {
                             info[7], info[8], info[9], info[10], info[11], info[12], info[13]);
                     break;
                 default:
-                    System.out.println("Couldn't find product class.");
+                    throw new storageException("Wrong line format!");
             }
             System.out.print("\n");
         }
@@ -211,6 +198,111 @@ public final class storage {
             } else {
                 System.out.println("Failed to create directory!");
             }
+        }
+    }
+
+    public void deleteFromIdCollection(Integer ID) throws IOException {
+        String id = ID.toString();
+        String oldFile1 = "/home/kaczpr/IdeaProjects/semestrialProject/IDs/IDs.csv";
+        String newFile1 = "temp.csv";
+        File oldFile = new File (oldFile1);
+        File newFile = new File (newFile1);
+        String currentLine;
+        boolean isDeleted = false;
+
+        try(FileWriter fw = new FileWriter(newFile1, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            FileReader fr = new FileReader(oldFile1);
+            BufferedReader br = new BufferedReader((fr))){
+            if ((currentLine = br.readLine()) != null){
+                String[] IDs = currentLine.split(",");
+                List<String> list = new ArrayList<String>();
+                list = Arrays.asList(IDs);
+                for(int i = 0; i < IDs.length; i++){
+                    if (!list.get(i).equals(id)) {
+                        bw.write(list.get(i));
+                        bw.write(",");
+                    }
+                    else isDeleted = true;
+                }
+            }
+            pw.flush();
+            pw.close();
+            fr.close();
+            br.close();
+            bw.close();
+            fw.close();
+            oldFile.delete();
+            File dump = new File(oldFile1);
+            newFile.renameTo(dump);
+            if(isDeleted) System.out.println("ID: " + id + " deleted from IDs.csv.");
+            else System.out.println("ID: " + id + " has NOT been deleted from IDs.csv.");
+
+
+        } catch (IOException e){
+            System.out.println("Error occurred while updating IDs.csv. " + e.getMessage());
+        }
+
+    }
+
+    public void sellingByID(int ID){
+        String IDToDelete = String.valueOf(ID);
+        String filePath = "/home/kaczpr/IdeaProjects/semestrialProject/storages/" + this.getName();
+        String tempFIle = "temp.csv";
+        File oldFile = new File(filePath);
+        File newFile = new File(tempFIle);
+        String currentLine;
+        boolean wasDeleted = false;
+        try(FileWriter fw = new FileWriter(tempFIle, true);
+        BufferedWriter bw = new BufferedWriter(fw);
+        PrintWriter pw = new PrintWriter(bw);
+        FileReader fr = new FileReader(filePath);
+        BufferedReader br = new BufferedReader((fr))){
+            while((currentLine = br.readLine()) != null){
+                String[] info = currentLine.split(",");
+                if(!Objects.equals(info[0], IDToDelete)){
+                    pw.println(currentLine);
+                }
+                if(Objects.equals(info[0], IDToDelete)){
+                    System.out.println("Product with ID: " + IDToDelete + " has been sold");
+                    wasDeleted = true;
+                }
+            }
+            pw.flush();
+            pw.close();
+            fr.close();
+            br.close();
+            bw.close();
+            fw.close();
+            oldFile.delete();
+            File dump = new File(filePath);
+            newFile.renameTo(dump);
+            if(!wasDeleted) throw new storageException("No such product!");
+            else System.out.println("Product with ID: " + IDToDelete + " has been deleted");
+
+        } catch (IOException e){
+            System.out.println("An error occurred while overwriting a file " + e.getMessage());
+        } catch (storageException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void addToStorageFromFile(String file) {
+        String firstFile = "/home/kaczpr/IdeaProjects/semestrialProject/addingQueue/" + file;
+        String storage = "/home/kaczpr/IdeaProjects/semestrialProject/storages/" + this.getName();
+        String line;
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(storage, true));
+            BufferedReader br = new BufferedReader(new FileReader(firstFile))){
+            while((line = br.readLine()) != null){
+                bw.write(line);
+                bw.write("\n");
+            }
+            bw.write("\n");
+            br.close();
+            bw.close();
+        } catch (IOException e){
+            System.out.println("An error occurred while appending storage file. " + e.getMessage());
         }
     }
 

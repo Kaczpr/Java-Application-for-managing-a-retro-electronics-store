@@ -1,3 +1,12 @@
+
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 public class product extends item implements customComparable<product>{
@@ -5,6 +14,47 @@ public class product extends item implements customComparable<product>{
     private final String category;
     private final String producer;
     private final date productionDate;
+
+
+    public void writeToIDCollection(){
+        try (Writer writer = new OutputStreamWriter(Files.newOutputStream(
+                Paths.get("/home/kaczpr/IdeaProjects/semestrialProject/IDs/IDs.csv"),
+                StandardOpenOption.CREATE, StandardOpenOption.APPEND),
+                StandardCharsets.UTF_8)) {
+            String id = String.valueOf(this.getID());
+            writer.write(id);
+            writer.write(",");
+            System.out.println("Product saved in storage - ID saved into IDs.csv");
+        } catch (IOException e){
+            System.out.println("An error occurred while writing to IDs.csv file");
+        }
+    }
+    public void Validation() throws productException {
+        List<String> list = new ArrayList<>();
+        String StringID;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("/home/kaczpr/IdeaProjects/semestrialProject/IDs/IDs.csv"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] idArray = line.split(",");
+                Collections.addAll(list, idArray);
+            }
+        }catch (IOException e) {
+            System.out.println("IOException: " + e.getMessage());
+        }
+        for (String s : list) {
+            try {
+                StringID = s;
+                if (this.getID() == Integer.parseInt(StringID))
+                    throw new productException("This ID is already used, ID is Primary Key and therefor has to be unique");
+            } catch (NumberFormatException e) {
+                System.out.println("An error occurred while parsing int");
+            }
+        }
+
+        if(this.getPrice() < 0) throw new productException("Price cannot be negative!");
+        if(this.getID() < 0) throw new productException("ID cannot be negative");
+    }
 
 
     public product() throws dateException {
