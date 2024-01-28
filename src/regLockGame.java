@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class regLockGame extends game{
+public final class regLockGame extends game{
     private String region;
     private String regLock;
 

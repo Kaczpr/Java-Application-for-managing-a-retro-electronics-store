@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class arcade extends machine{
+public final class arcade extends machine{
 
     private int maxCoinCapacity; //max number of coins that can be stored inside
     private String controller; //dancing mat, "fishing rods", buttons, pistols, steering wheels

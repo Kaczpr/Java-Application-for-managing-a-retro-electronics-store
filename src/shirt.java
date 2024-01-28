@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class shirt extends merchandise{
+public final class shirt extends merchandise{
     private String size;
     private String material;
 

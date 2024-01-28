@@ -19,15 +19,12 @@ public class Main {
         arcade midwayT2 = new arcade(midwayT);
 
         storage s1 = new storage("storage1.csv");
-        System.out.println(s1.getProductList());
-
-        //nie wiem czy nie lepiej zamienic metody compareTo tak zeby poprostu porownywala hashcody.
-        //wydaje mi sie ze nie, wydaje mi sie ze dwa obiekty mogą mieć te same hashcody ale byc rozne, ale lepiej doptać
+        //System.out.println(s1.getProductList());
 
         //jak zrobić implementacje dodatkowych komparatorów (metody compare())?
         //interfejsami chyba
 
-
+        System.out.println(chronoTrigger1.productionDateCompareTo(midwayT));
 
 
 

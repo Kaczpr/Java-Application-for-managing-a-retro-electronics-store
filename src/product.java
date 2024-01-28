@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class product extends item {
+public class product extends item implements customComparable<product>{
     private final String name;
     private final String category;
     private final String producer;
@@ -90,4 +90,21 @@ public class product extends item {
         toReturn = 31 * toReturn * this.getProducer().hashCode();
         return toReturn;
     }
+    @Override
+    public product productionDateCompareTo(product product2) throws dateException {
+        if(this.getProductionDate().compareTo(product2.getProductionDate()) > 0) return this;
+        else if (this.getProductionDate().compareTo(product2.getProductionDate()) < 0) return product2;
+        else return this;
+    }
+    @Override public product priceCompareTo(product product2){
+        if (this.compareTo(product2) > 0) return this;
+        else return product2;
+    }
+    @Override public product idCompareTo(product product2){
+        if(Integer.compare(this.getID(), product2.getID()) > 0) return this;
+        else return product2;
+
+    }
+
+
 }

@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.Objects;
 
-public class console extends machine {
+public final class console extends machine {
     private int generation;
     private String media;
     private String videoOutput;

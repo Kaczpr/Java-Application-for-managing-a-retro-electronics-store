@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class storage {
+public final class storage {
+
 
     private List<String> productList;
 

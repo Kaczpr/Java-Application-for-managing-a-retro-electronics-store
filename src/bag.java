@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class bag extends mug{
+public final class bag extends mug{
 
     private String material;
 
