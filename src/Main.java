@@ -20,7 +20,9 @@ public class Main {
 
         storage storage = new storage("storage2.csv");
 
-        storage.deleteFromIdCollection(99);
+        //storage.deleteFromIdCollection(100);
+        //storage.sellingByID(21);
+        storage.deleteFromStorageFromFile("test.csv");
 
     }
 }

@@ -279,7 +279,10 @@ public final class storage {
             File dump = new File(filePath);
             newFile.renameTo(dump);
             if(!wasDeleted) throw new storageException("No such product!");
-            else System.out.println("Product with ID: " + IDToDelete + " has been deleted");
+            else {
+                System.out.println("Product with ID: " + IDToDelete + " has been deleted");
+                deleteFromIdCollection(ID);
+            }
 
         } catch (IOException e){
             System.out.println("An error occurred while overwriting a file " + e.getMessage());
@@ -306,8 +309,31 @@ public final class storage {
         }
     }
 
+    public void deleteFromStorageFromFile(String file){
+        String firstFile = "/home/kaczpr/IdeaProjects/semestrialProject/deletingQueue/" + file;
+        String storage = "/home/kaczpr/IdeaProjects/semestrialProject/storages/" + this.getName();
+        String line;
+        List<Integer> toDeleteList = new ArrayList<>();
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(storage, true));
+            BufferedReader br = new BufferedReader(new FileReader(firstFile))){
+
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                for (String value : values) {
+                    toDeleteList.add(Integer.parseInt(value.trim()));
+                }
+            }
+            for (Integer number : toDeleteList) {
+                sellingByID(number);
+            }
+            }catch (IOException e){
+            System.out.println("An error occurred while appending storage file. " + e.getMessage());
+        }
 
     }
+}
+
+
 
 
 
