@@ -5,6 +5,9 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
 
+/**
+ * Ta klasa reprezentuje magazyn, w którym przechowywane są produkty.
+ */
 public final class storage {
 
 
@@ -14,6 +17,11 @@ public final class storage {
     private int currentSize;
     private final String name;
 
+    /**
+     * Metoda liczy ile miejsca jest zajętego w magazynie
+     * @param file nazwa magazynu
+     * @throws IOException Zgłasza wyjątek wejścia i wyjścia
+     */
     public void currentSize(String file) throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader("/home/kaczpr/IdeaProjects/semestrialProject/storages/" + file) );
         int lines = 0;
@@ -22,23 +30,60 @@ public final class storage {
         this.currentSize = lines;
     }
 
+    /**
+     * Getter dla pola currentSize
+     * @return currentSize
+     */
     public int getCurrentSize(){
         return this.currentSize;
     }
+    /**
+     * Getter dla pola maxSize
+     * @return maxSize
+     */
     public int getMaxSize(){
         return this.maxSize;
     }
+    /**
+     * Getter dla pola name
+     * @return name
+     */
     public String getName(){return this.name;}
+
+    /**
+     * Getter dla pola productList
+     * @return productList
+     */
     public List<String> getProductList(){
         return this.productList;
     }
 
+    /**
+     * Setter dla pola productList
+     * @param newList nowa lista, która zamieni starą liste
+     */
+    public void setProductList(List<String> newList){
+        this.productList = newList;
+    }
+
+    /**
+     * Konstruktor przyjmujący nazwę i automatycznie alokujący ilośc miejsca w magazynie na 100.
+     * @param file nazwa magazynu
+     * @throws IOException Zgłasza wyjątek wejścia i wyjścia
+     */
     public storage(String file) throws IOException {
         this.maxSize = 100;
         currentSize(file);
         this.name = file;
         this.productList = Arrays.asList(readFromCSV(file));
     }
+
+    /**
+     * Konstruktor przyjmujący nazwę i maksymalny rozmiar magazynu.
+     * @param maxSize maksymalnnyn rozmiar
+     * @param name nazwa
+     * @throws storageException Zgłasza wyjatek magazynu.
+     */
     public storage(int maxSize, String name) throws storageException {
         this.name = name;
         this.maxSize = maxSize;
@@ -46,6 +91,13 @@ public final class storage {
     }
 
     //StringBuilder is an array of characters
+
+    /**
+     * Metoda tworzy linie, w której zawierane są wszystkie informacje o produkcie, a którą można zapisać w pliku .csv.
+     * @param product produkt
+     * @return Sttring będący linią do zapisania w pliku .csv.
+     * @throws dateException Zgłasza wyjątek związany z datą.
+     */
     public static StringBuilder createCSV_Line(product product) throws dateException {
         StringBuilder toReturn = new StringBuilder(20);
         toReturn.append(product.getID()).append(",");
@@ -109,6 +161,12 @@ public final class storage {
 
     }
 
+    /**
+     * Metoda zapisuje do magazynu linie csv z informacjami o produkcie.
+     * @param product produkt.
+     * @throws dateException Zgłasza wyjątek związany z datą.
+     * @throws productException Zgłasza wyjątek związany z produktem.
+     */
     public void writeToCSV(product product) throws dateException, productException {
         product.Validation();
         StringBuilder toWrite = storage.createCSV_Line(product);
@@ -126,6 +184,11 @@ public final class storage {
         product.writeToIDCollection();
     }
 
+    /**
+     * Metoda czyta z pliku csv linia po linii.
+     * @param file nazwa magazynu.
+     * @return Tablice z liniami z pliku csv.
+     */
     public static String[] readFromCSV(String file) {
         List<String> lines = new ArrayList<>();
         File storage = new File("/home/kaczpr/IdeaProjects/semestrialProject/storages/" + file);
@@ -141,6 +204,10 @@ public final class storage {
         return lines.toArray(new String[0]);
     }
 
+    /**
+     * Wyświetla informacje o zawartości magazynu
+     * @throws storageException Zgłasza wyjątek związany z magazynem.
+     */
     public void storageInfo() throws storageException {
         System.out.println("STORAGE INFO:");
         String[] products = new String[this.maxSize];
@@ -190,6 +257,11 @@ public final class storage {
         }
     }
 
+    /**
+     * Tworzy nowy magazyn
+     * @param name nazwa magazynu
+     * @throws IOException Zgłasza wyjątek wejscia/wyjścia
+     */
     public static void createNewStorage(String name) throws IOException {
         File file = new File("/home/kaczpr/IdeaProjects/semestrialProject/storages/" + name + ".csv");
         if (!file.exists()) {
@@ -201,6 +273,11 @@ public final class storage {
         }
     }
 
+    /**
+     * Usuwa dane ID z listy wykorzystanych ID
+     * @param ID ID
+     * @throws IOException Zgłasza wyjątek wejscia/wyjścia
+     */
     public void deleteFromIdCollection(Integer ID) throws IOException {
         String id = ID.toString();
         String oldFile1 = "/home/kaczpr/IdeaProjects/semestrialProject/IDs/IDs.csv";
@@ -246,6 +323,10 @@ public final class storage {
 
     }
 
+    /**
+     * Sprzedaje, a więc usuwa towar o danym ID z mgazynu
+     * @param ID ID
+     */
     public void sellingByID(int ID){
         String IDToDelete = String.valueOf(ID);
         String filePath = "/home/kaczpr/IdeaProjects/semestrialProject/storages/" + this.getName();
@@ -291,6 +372,10 @@ public final class storage {
         }
     }
 
+    /**
+     * Dodaje do magazynu produkty o danych podanych w pliku .csv.
+     * @param file nazwa pliku
+     */
     public void addToStorageFromFile(String file) {
         String firstFile = "/home/kaczpr/IdeaProjects/semestrialProject/addingQueue/" + file;
         String storage = "/home/kaczpr/IdeaProjects/semestrialProject/storages/" + this.getName();
@@ -309,6 +394,10 @@ public final class storage {
         }
     }
 
+    /**
+     * Usuwa produkty o danych w pliku .csv ID.
+     * @param file nazwa pliku.
+     */
     public void deleteFromStorageFromFile(String file){
         String firstFile = "/home/kaczpr/IdeaProjects/semestrialProject/deletingQueue/" + file;
         String storage = "/home/kaczpr/IdeaProjects/semestrialProject/storages/" + this.getName();
@@ -331,6 +420,7 @@ public final class storage {
         }
 
     }
+
 }
 
 

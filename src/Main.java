@@ -1,6 +1,7 @@
-import java.io.IOException;
 
+import java.io.IOException;
 public class Main {
+
     public static void main(String [] args) throws dateException, IOException, productException {
 
 
@@ -20,9 +21,7 @@ public class Main {
 
         storage storage = new storage("storage2.csv");
 
-        //storage.deleteFromIdCollection(100);
-        //storage.sellingByID(21);
-        storage.deleteFromStorageFromFile("test.csv");
+
 
     }
 }
